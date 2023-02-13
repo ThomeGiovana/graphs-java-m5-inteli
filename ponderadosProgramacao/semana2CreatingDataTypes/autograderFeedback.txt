@@ -1,0 +1,767 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+SpotBugs:     PASSED
+PMD:          FAILED (3 warnings)
+Checkstyle:   FAILED (0 errors, 8 warnings)
+
+Correctness:  29/34 tests passed
+Memory:       2/2 tests passed
+Timing:       51/51 tests passed
+
+Aggregate score: 91.18%
+[ Compilation: 5%, API: 5%, Style: 0%, Correctness: 60% , Timing: 10% , Memory: 20% ]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+ 134 Feb 13 02:03 AnnotationType.java
+147K Feb 13 02:03 COS_126.xml
+142K Feb 13 02:03 COS_126.xml.2020.1
+ 189 Feb 13 02:03 Class.java
+2.4K Feb 13 02:03 Clock.class
+2.6K Feb 13 02:03 Clock.java
+2.3K Feb 13 02:03 ColorHSB.class
+2.3K Feb 13 02:03 ColorHSB.java
+ 850 Feb 13 02:03 Computer\ Science.iml
+ 128 Feb 13 02:03 Enum.java
+ 259 Feb 13 02:03 File\ Header.java
+ 133 Feb 13 02:03 Interface.java
+4.2K Feb 13 02:03 Project.xml
+1.1K Feb 13 02:03 checkstyle-idea.xml
+ 15K Feb 13 02:03 codeInsightSettings.xml
+ 142 Feb 13 02:03 codeStyleConfig.xml
+  18 Feb 13 02:03 colors1.txt
+ 200 Feb 13 02:03 colors10.txt
+ 160 Feb 13 02:03 colors8.txt
+ 384 Feb 13 02:03 compiler.xml
+7.0K Feb 13 02:03 crayola.txt
+ 201 Feb 13 02:03 encodings.xml
+ 267 Feb 13 02:03 externalDependencies.xml
+ 290 Feb 13 02:03 file.template.settings.xml
+ 352 Feb 13 02:03 findbugs-idea.xml
+1.9K Feb 13 02:03 grayscale.txt
+ 560 Feb 13 02:03 introcs.xml
+ 190 Feb 13 02:03 lift.xml
+ 14K Feb 13 02:03 logo.png
+ 215 Feb 13 02:03 misc.xml
+  58 Feb 13 02:03 module-info.java
+ 273 Feb 13 02:03 modules.xml
+ 102 Feb 13 02:03 package-info.java
+ 173 Feb 13 02:03 profiles_settings.xml
+ 357 Feb 13 02:03 saveactions_settings.xml
+ 320 Feb 13 02:03 web.txt
+ 66K Feb 13 02:03 wiki.txt
+5.5K Feb 13 02:03 workspace.xml
+
+
+********************************************************************************
+*  COMPILING                                                                    
+********************************************************************************
+
+
+% javac ColorHSB.java
+*-----------------------------------------------------------
+
+% javac Clock.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+ColorHSB:
+
+Clock:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       
+********************************************************************************
+
+
+% spotbugs *.class
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+ColorHSB.java:2: The private instance (or static) variable 'brightness' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+ColorHSB.java:2: The private instance (or static) variable 'hue' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+ColorHSB.java:2: The private instance (or static) variable 'saturation' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+PMD ends with 3 warnings.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+[WARN] ColorHSB.java:3:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
+[WARN] ColorHSB.java:4:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
+[WARN] ColorHSB.java:5:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]
+Checkstyle ends with 0 errors and 3 warnings.
+
+% custom checkstyle checks for ColorHSB.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for Clock.java
+*-----------------------------------------------------------
+[WARN] Clock.java:1:1: '23' is an unnecessary numeric literal because it is derived from the number of hours per day (24) or the number of minutes per hour (60). [NumericLiteralCount]
+[WARN] Clock.java:1:1: '59' is an unnecessary numeric literal because it is derived from the number of hours per day (24) or the number of minutes per hour (60). [NumericLiteralCount]
+[WARN] Clock.java:1:1: The numeric literal '23' appears 2 times. Define a constant variable (such as 'HOURS_PER_DAY'). [NumericLiteralCount]
+[WARN] Clock.java:1:1: The numeric literal '59' appears 2 times. Define a constant variable (such as 'MINUTES_PER_HOUR'). [NumericLiteralCount]
+[WARN] Clock.java:1:1: The numeric literal '60' appears 2 times. Define a constant variable (such as 'MINUTES_PER_HOUR'). [NumericLiteralCount]
+Checkstyle ends with 0 errors and 5 warnings.
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of ColorHSB
+*-----------------------------------------------------------
+Running 17 total tests.
+
+Test 1a: construct a ColorHSB object and call toString()
+  * (25, 84, 97)
+  * (0, 0, 0)
+  * (359, 100, 100)
+==> passed
+
+Test 1b: construct random ColorHSB objects and call toString()
+  * h <= 359, s <= 100, b <= 100
+  * h <=  60, s <=  10, b <=  10
+==> passed
+
+Test 2a: construct a ColorHSB object and call isGrayscale()
+  * (25, 84, 97)
+  * (0, 0, 0)
+  * (0, 50, 0)
+  * (0, 0, 50)
+  * (359, 100, 100)
+==> passed
+
+Test 2b: construct random ColorHSB objects and call isGrayscale()
+  * h <= 359, s <= 100, b <= 100
+  * h  =   0, s <= 100, b <= 100
+  * h <= 359, s  =   0, b <= 100
+  * h <= 359, s <= 100, b  =   0
+  * h <= 359, s  =   0, b  =   0
+  * h <=  10, s <=  10, b <=  10
+==> passed
+
+Test 3a: construct two ColorHSB objects and call distanceSquaredTo()
+  * (350, 100, 45) to (0, 100, 50)
+  * (25, 84, 97) to (0, 100, 100)
+  * (25, 84, 97) to (26, 85, 96)
+  * (180, 100, 100) to (0, 0, 0)
+==> passed
+
+Test 3b: construct random pairs of ColorHSB objects and call distanceSquaredTo()
+  * h <= 359, s <= 100, b <= 100
+  * h <=  60, s <=  10, b <=  10
+  * h <= 359, s <= 100, b  =   0
+  * h <= 359, s  =   0, b <= 100
+  * h  =   0, s <= 100, b <= 100
+==> passed
+
+Test 3c: construct random pairs of ColorHSB objects and check that
+         distanceSquaredTo() is symmetric
+  * h <= 359, s <= 100, b <= 100
+  * h <=  60, s <=  10, b <=  10
+  * h <= 359, s <= 100, b  =   0
+  * h <= 359, s  =   0, b <= 100
+  * h  =   0, s <= 100, b <= 100
+==> passed
+
+Test 4: create two ColorHSB objects and call the methods isGrayscale(),
+        toString(), and distanceSquaredTo() with probabilities (p1, p2, p3)
+        and check that they return the same values in each call
+  * 100 random calls (0.8, 0.1, 0.1)
+  * 100 random calls (0.8, 0.1, 0.1)
+  * 100 random calls (0.1, 0.8, 0.1)
+  * 100 random calls (0.1, 0.8, 0.1)
+  * 100 random calls (0.1, 0.1, 0.8)
+  * 100 random calls (0.1, 0.1, 0.8)
+==> passed
+
+Test 5a: check formatting of main() for inputs from exam specification
+  % java-introcs ColorHSB 25 84 97 < web.txt
+  Red (0, 100, 100)
+
+  % java-introcs ColorHSB 350 100 45 < web.txt
+  Maroon (0, 100, 50)
+
+  % java-introcs ColorHSB 25 84 97 < wiki.txt
+  Princeton_Orange (26, 85, 96)
+
+==> passed
+
+Test 5b: check that main() reads all data from standard input
+  * java-introcs ColorHSB 25 84 97 < web.txt
+  * java-introcs ColorHSB 350 100 45 < web.txt
+  * java-introcs ColorHSB 25 84 97 < wiki.txt
+==> passed
+
+Test 5c: check correctness of main() for inputs from exam specification
+  * java-introcs ColorHSB 25 84 97 < web.txt
+  * java-introcs ColorHSB 350 100 45 < web.txt
+  * java-introcs ColorHSB 25 84 97 < wiki.txt
+==> passed
+
+Test 6: check main() computes closest color
+  * web.txt
+  * crayola.txt
+  * wiki.txt
+==> passed
+
+
+Tests 7a to 10 test that main() computes the closest color with respect
+to the student's distanceSquaredTo() method, even if that method returns
+incorrect values.
+
+Test 7a: check main() with random command-line arguments
+  * web.txt
+  * crayola.txt
+  * wiki.txt
+==> passed
+
+Test 7b: check main() with random input files
+  * random input files with 10 pre-defined colors
+  * random input files with 20 pre-defined colors
+  * random input files with 2 pre-defined colors
+  * random input files with 1 pre-defined color
+==> passed
+
+Test 8: check main() with ties possible for closest color
+  * wiki.txt
+  * grayscale.txt
+  * random input files with 10 pre-defined colors
+  * random input files with 20 pre-defined colors
+==> passed
+
+Test 9: check main() with large input files
+  * random input files with 2000 pre-defined colors
+  * random input files with 5000 pre-defined colors
+  * random input files with 10000 pre-defined colors
+==> passed
+
+Test 10: check main() when distance is very large
+  * colors1.txt
+  * colors8.txt
+  * colors10.txt
+==> passed
+
+Total: 17/17 tests passed!
+
+
+================================================================
+Testing correctness of Clock
+*-----------------------------------------------------------
+Running 17 total tests.
+
+Test 1a: construct a Clock object; check formatting of toString()
+  * hours = 11, minutes = 59
+  * hours =  3, minutes = 30
+  * hours = 16, minutes =  5
+  * hours =  0, minutes =  0
+  * hours = 23, minutes = 59
+==> passed
+
+Test 1b: construct random Clock objects; check formatting of toString()
+  * 10000 trials with 10 <= hours < 24, 10 <= minutes < 60
+  * 10000 trials with  0 <= hours < 24, 10 <= minutes < 60
+  * 10000 trials with 10 <= hours < 24,  0 <= minutes < 60
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60
+==> passed
+
+Test 2a: construct a Clock object; check toString()
+  * hours = 11, minutes = 59
+  * hours =  3, minutes = 30
+  * hours =  0, minutes =  0
+  * hours = 23, minutes = 59
+==> passed
+
+Test 2b: construct random Clock objects; check toString()
+  * 10000 trials with 10 <= hours < 24, 10 <= minutes < 60
+  * 10000 trials with  0 <= hours < 24, 10 <= minutes < 60
+  * 10000 trials with 10 <= hours < 24,  0 <= minutes < 60
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60
+==> passed
+
+Test 3: construct two random Clock objects; check isEarlierThan()
+  * 10000 trials (earlier)
+  * 10000 trials (later)
+  * 10000 trials (equal)
+  * 10000 trials (reference equal)
+==> passed
+
+Test 4a: construct a Clock object; call tic(); check toString()
+  * hours = 12, minutes = 34
+  * hours =  3, minutes = 30
+  * hours =  0, minutes =  0
+  * hours = 23, minutes =  0
+==> passed
+
+Test 4b: construct a Clock object; call tic(); check toString()
+  * hours =  0, minutes = 59
+  * hours =  1, minutes = 59
+  * hours =  2, minutes = 59
+  * hours = 11, minutes = 59
+  * hours = 12, minutes = 59
+  * hours = 22, minutes = 59
+  * hours = 23, minutes = 59
+==> passed
+
+Test 4c: construct random Clock objects; call tic(); check toString()
+  * 10000 trials with 10 <= hours < 23, 10 <= minutes < 59
+  * 10000 trials with  0 <= hours < 23, 10 <= minutes < 59
+  * 10000 trials with 10 <= hours < 23,  0 <= minutes < 59
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60
+==> passed
+
+Test 5a: construct a Clock object; call toc(); check toString()
+  * hours = 12, minutes = 34, delta = 5
+    - toString() returns wrong value
+    - student   toString() = "00:51"
+    - reference toString() = "12:39"
+
+  * hours =  3, minutes = 30, delta = 10
+    - toString() returns wrong value
+    - student   toString() = "00:43"
+    - reference toString() = "03:40"
+
+  * hours =  0, minutes =  0, delta = 45
+  * hours = 23, minutes =  0, delta = 1
+    - toString() returns wrong value
+    - student   toString() = "00:24"
+    - reference toString() = "23:01"
+
+  * hours = 23, minutes =  0, delta = 0
+    - toString() returns wrong value
+    - student   toString() = "00:23"
+    - reference toString() = "23:00"
+
+==> FAILED
+
+Test 5b: construct a Clock object; call toc(); check toString()
+  * hours =  0, minutes = 59, delta = 10
+  * hours =  1, minutes = 59, delta = 60
+    - toString() returns wrong value
+    - student   toString() = "02:00"
+    - reference toString() = "02:59"
+
+  * hours =  2, minutes = 59, delta = 1
+    - toString() returns wrong value
+    - student   toString() = "01:02"
+    - reference toString() = "03:00"
+
+  * hours = 11, minutes = 59, delta = 45
+    - toString() returns wrong value
+    - student   toString() = "01:55"
+    - reference toString() = "12:44"
+
+  * hours = 12, minutes = 59, delta = 120
+    - toString() returns wrong value
+    - student   toString() = "03:11"
+    - reference toString() = "14:59"
+
+  * hours = 22, minutes = 59, delta = 1440
+    - toString() returns wrong value
+    - student   toString() = "01:21"
+    - reference toString() = "22:59"
+
+  * hours = 23, minutes = 59, delta = 100
+    - toString() returns wrong value
+    - student   toString() = "03:02"
+    - reference toString() = "01:39"
+
+  * hours =  0, minutes =  0, delta = 30000
+==> FAILED
+
+Test 5c: construct random Clock objects; call toc(); check toString()
+  * 10000 trials with 10 <= hours < 23, 10 <= minutes < 59,  0 <= delta < 60
+    - toString() returns wrong value
+    - student   toString() = "01:39"
+    - reference toString() = "14:26"
+
+    - failed on trial 1 of 10000
+    - after 1 call to toc(32)
+    - initial hours   = 13
+    - initial minutes = 54
+
+  * 10000 trials with  0 <= hours < 23, 10 <= minutes < 59,  0 <= delta < 60
+    - toString() returns wrong value
+    - student   toString() = "01:12"
+    - reference toString() = "19:53"
+
+    - failed on trial 1 of 10000
+    - after 1 call to toc(39)
+    - initial hours   = 19
+    - initial minutes = 14
+
+  * 10000 trials with 10 <= hours < 23,  0 <= minutes < 59,  0 <= delta < 60
+    - toString() returns wrong value
+    - student   toString() = "01:36"
+    - reference toString() = "17:20"
+
+    - failed on trial 1 of 10000
+    - after 1 call to toc(48)
+    - initial hours   = 16
+    - initial minutes = 32
+
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60,  0 <= delta < 60
+    - toString() returns wrong value
+    - student   toString() = "00:54"
+    - reference toString() = "17:37"
+
+    - failed on trial 1 of 10000
+    - after 1 call to toc(9)
+    - initial hours   = 17
+    - initial minutes = 28
+
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60,  0 <= delta < 1440
+    - toString() returns wrong value
+    - student   toString() = "20:29"
+    - reference toString() = "04:21"
+
+    - failed on trial 1 of 10000
+    - after 1 call to toc(1169)
+    - initial hours   = 8
+    - initial minutes = 52
+
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60,  0 <= delta < 14400
+    - toString() returns wrong value
+    - student   toString() = "06:19"
+    - reference toString() = "15:10"
+
+    - failed on trial 1 of 10000
+    - after 1 call to toc(11832)
+    - initial hours   = 9
+    - initial minutes = 58
+
+==> FAILED
+
+Test 6a: construct random Clock objects with 1-argument constructor; check toString()
+  * time = 11:59
+  * time = 03:30
+  * time = 16:05
+  * time = 00:00
+  * time = 23:59
+==> passed
+
+Test 6b: construct random Clock objects with 1-argument constructor; check toString()
+  * 10000 trials with 10 <= hours < 24, 10 <= minutes < 60
+  * 10000 trials with  0 <= hours < 24, 10 <= minutes < 60
+  * 10000 trials with 10 <= hours < 24,  0 <= minutes < 60
+  * 10000 trials with  0 <= hours < 24,  0 <= minutes < 60
+==> passed
+
+Test 7: check two-argument constructor with invalid arguments
+  * hours = 24, minutes =  0
+  * hours = 24, minutes = 60
+  * hours =  0, minutes = 60
+  * hours = -1, minutes = 30
+  * hours = 12, minutes = -1
+  * hours =  0, minutes = -1
+  * hours = -1, minutes = -1
+  * hours = 59, minutes = 23
+  * hours = -2147483648, minutes = -2147483648
+  * hours = -2147483648, minutes = 2147483647
+  * hours = 2147483647, minutes = -2147483648
+  * hours = 2147483647, minutes = 2147483647
+==> passed
+
+Test 8: check 1-argument constructor with invalid arguments
+  * time = "24:00"
+    - does not throw an exception
+
+  * time = "25:10"
+    - does not throw an exception
+
+  * time = "12:60"
+    - does not throw an exception
+
+  * time = "12:060"
+  * time = "12:100"
+  * time = "2:56"
+  * time = "2:5"
+  * time = "02:5"
+  * time = "0:0"
+  * time = "00007:23"
+  * time = "07:000023"
+  * time = "12,34"
+  * time = "1234"
+  * time = "HH:MM"
+  * time = "0"
+  * time = ""
+  * time = "-12:34"
+  * time = "0x06:34"
+  * time = " 12:34"
+  * time = "12:34 "
+  * time = ":1234"
+  * time = "1:234"
+  * time = "123:4"
+  * time = "1234:"
+  * time = "12345"
+==> FAILED
+
+Test 9: construct Clock with 2-argument constructor; call toc() with negative delta
+  * hours = 11, minutes = 59, delta = -1
+  * hours = 23, minutes = 59, delta = -5
+  * hours =  1, minutes = 23, delta = -10
+  * hours = 16, minutes = 45, delta = -100
+  * hours = 12, minutes =  0, delta = -1440
+  * hours = 21, minutes = 30, delta = -14400
+  * hours = 17, minutes = 18, delta = -2147483648
+==> passed
+
+Test 10: create two Clock objects from 2-argument constructor; check random
+         intermixed sequence of calls to toString(), isEarlierThan(), tic(),
+         and toc(), with probabilities (p1, p2, p3, p4), respectively
+  * p = (0.5, 0.5, 0.0, 0.0)
+  * p = (0.5, 0.0, 0.5, 0.0)
+  * p = (0.5, 0.0, 0.0, 0.5)
+    - failed on operation 3 of 1000
+    - student   toString() = "07:02"
+    - reference toString() = "05:39"
+    - sequence of Clock operations was:
+         Clock clock1 = new Clock(23, 55)
+         Clock clock2 = new Clock(23, 55)
+         clock1.toc(344)
+         clock2.toc(63)
+         clock1.toString()             ==> "07:02"
+
+    - failed on trial 1 of 100
+
+  * p = (0.0, 0.5, 0.5, 0.0)
+  * p = (0.0, 0.5, 0.0, 0.5)
+    - failed on operation 16 of 1000
+    - student   isEarlierThan() = true
+    - reference isEarlierThan() = false
+    - student   clock1          = "12:17"
+    - student   clock2          = "16:32"
+    - reference clock1          = "22:42"
+    - reference clock2          = "17:18"
+    - sequence of Clock operations was:
+         Clock clock1 = new Clock(23, 58)
+         Clock clock2 = new Clock(23, 58)
+         clock1.isEarlierThan(clock2)  ==> false
+         clock1.isEarlierThan(clock2)  ==> false
+         clock1.toc(681)
+         clock1.isEarlierThan(clock2)  ==> true
+         clock2.toc(732)
+         clock1.isEarlierThan(clock2)  ==> true
+         clock1.isEarlierThan(clock2)  ==> true
+         clock1.isEarlierThan(clock2)  ==> true
+         clock1.isEarlierThan(clock2)  ==> true
+         clock1.isEarlierThan(clock2)  ==> true
+         clock2.toc(598)
+         clock2.toc(715)
+         clock2.toc(939)
+         clock1.toc(683)
+         clock2.toc(936)
+         clock1.isEarlierThan(clock2)  ==> true
+
+    - failed on trial 1 of 100
+
+  * p = (0.2, 0.2, 0.3, 0.3)
+    - failed on operation 14 of 1000
+    - student   toString() = "02:58"
+    - reference toString() = "00:12"
+    - sequence of Clock operations was:
+         Clock clock1 = new Clock(23, 58)
+         Clock clock2 = new Clock(23, 58)
+         clock1.isEarlierThan(clock2)  ==> false
+         clock2.toString()             ==> "23:58"
+         clock1.toc(937)
+         clock1.toc(356)
+         clock2.tic()
+         clock1.isEarlierThan(clock2)  ==> true
+         clock1.isEarlierThan(clock2)  ==> true
+         clock2.toc(219)
+         clock2.toc(549)
+         clock2.toc(20)
+         clock2.tic()
+         clock1.isEarlierThan(clock2)  ==> false
+         clock1.toc(161)
+         clock1.toString()             ==> "02:58"
+
+    - failed on trial 1 of 100
+
+  * p = (0.2, 0.2, 0.3, 0.3)
+    - failed on operation 7 of 1000
+    - student   isEarlierThan() = false
+    - reference isEarlierThan() = true
+    - student   clock1          = "15:37"
+    - student   clock2          = "11:19"
+    - reference clock1          = "03:25"
+    - reference clock2          = "23:07"
+    - sequence of Clock operations was:
+         Clock clock1 = new Clock(12, 16)
+         Clock clock2 = new Clock(12, 16)
+         clock2.tic()
+         clock2.toString()             ==> "12:17"
+         clock1.isEarlierThan(clock2)  ==> true
+         clock1.toc(908)
+         clock2.toc(650)
+         clock1.tic()
+         clock1.isEarlierThan(clock2)  ==> false
+
+    - failed on trial 1 of 100
+
+==> FAILED
+
+Total: 12/17 tests passed!
+
+
+================================================================
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Analyzing memory of ColorHSB
+*-----------------------------------------------------------
+Running 1 total tests.
+
+Test 1: Memory usage per ColorHSB object
+  * number bytes used by student   ColorHSB object = 32
+  * number bytes used by reference ColorHSB object = 32
+==> passed
+
+Total: 1/1 tests passed!
+
+
+================================================================
+
+
+
+Analyzing memory of Clock
+*-----------------------------------------------------------
+Running 1 total tests.
+
+Test 1: Memory usage per Clock object
+  * number bytes used by student   Clock object = 24
+  * number bytes used by reference Clock object = 24
+==> passed
+
+Total: 1/1 tests passed!
+
+
+================================================================
+
+
+
+********************************************************************************
+*  TIMING
+********************************************************************************
+
+Timing Clock
+*-----------------------------------------------------------
+Running 51 total tests.
+
+Test 1: create n Clock object; call toString() n times
+
+                    n  seconds
+----------------------------------
+=> passed        1000     0.00
+=> passed        2000     0.00
+=> passed        4000     0.00
+=> passed        8000     0.00
+=> passed       10000     0.00
+=> passed       20000     0.00
+=> passed       40000     0.00
+=> passed       80000     0.00
+=> passed      100000     0.01
+=> passed      200000     0.01
+
+==> 10/10 tests passed
+
+
+Test 2: create n Clock object; call isEarlierThan() n^2 times
+
+                    n  seconds
+----------------------------------
+=> passed         100     0.00
+=> passed         200     0.00
+=> passed         400     0.00
+=> passed         800     0.00
+=> passed        1000     0.00
+=> passed        2000     0.01
+=> passed        4000     0.06
+=> passed        8000     0.23
+=> passed       10000     0.36
+
+==> 9/9 tests passed
+
+
+Test 3: create a Clock object; call tic() n times
+
+                    n  seconds
+----------------------------------
+=> passed        1000     0.00
+=> passed        2000     0.00
+=> passed        4000     0.00
+=> passed        8000     0.00
+=> passed       10000     0.00
+=> passed       20000     0.00
+=> passed       40000     0.00
+=> passed       80000     0.00
+=> passed      100000     0.00
+=> passed      200000     0.00
+=> passed      400000     0.00
+=> passed      800000     0.00
+=> passed     1000000     0.00
+=> passed     2000000     0.00
+=> passed     4000000     0.00
+=> passed     8000000     0.00
+
+==> 16/16 tests passed
+
+
+Test 4: create a Clock object; call toc(n) n times
+
+                    n  seconds
+----------------------------------
+=> passed        1000     0.00
+=> passed        2000     0.00
+=> passed        4000     0.00
+=> passed        8000     0.00
+=> passed       10000     0.00
+=> passed       20000     0.00
+=> passed       40000     0.00
+=> passed       80000     0.00
+=> passed      100000     0.00
+=> passed      200000     0.00
+=> passed      400000     0.00
+=> passed      800000     0.00
+=> passed     1000000     0.00
+=> passed     2000000     0.00
+=> passed     4000000     0.00
+=> passed     8000000     0.00
+==> 16/16 tests passed
+
+
+Total: 51/51 tests passed!
+
+
+================================================================
+
+
+
