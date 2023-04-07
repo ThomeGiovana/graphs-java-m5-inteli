@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name=".lift3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/instrucoesProgramacao/listaEncadeada/.lift/introcs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/instrucoesProgramacao/listaEncadeada/.lift/stdlib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/instrucoesProgramacao/listaEncadeada/.lift/checkstyle-lift.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

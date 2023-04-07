@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name=".lift">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/instrucoesProgramacao/binarySearchTree/.lift/checkstyle-lift.jar!/" />
+      <root url="jar://$PROJECT_DIR$/instrucoesProgramacao/binarySearchTree/.lift/stdlib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/instrucoesProgramacao/binarySearchTree/.lift/introcs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
